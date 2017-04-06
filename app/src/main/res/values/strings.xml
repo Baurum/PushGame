@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ClickGame</string>
+    <string-array name="seconds">
+        <item>30s </item>
+        <item>20s </item>
+        <item>10s </item>
+    </string-array>
+
+</resources>

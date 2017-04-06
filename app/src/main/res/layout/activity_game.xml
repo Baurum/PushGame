@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="clickgame.bau.com.clickgame.GameActivity">
+
+
+    <TextView android:id="@+id/tv_seconds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="40dp"
+
+        />
+
+    <TextView android:id="@+id/tv_counter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="35dp"
+        android:textAlignment="center"
+
+        />
+
+    <Button android:id="@+id/btn_push"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:text="PUSH ME"
+        android:onClick="countPushButton"
+        android:background="#FF0000"
+        android:layout_margin="25dp"
+
+        />
+
+
+
+</LinearLayout>
