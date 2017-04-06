@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView appName;
     Spinner spTime;
     private TextView userTime;
+    private EditText etName;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private void initApp() {
         mContext = this;
         this.spTime = (Spinner) findViewById(R.id.sp_time);
+        etName = (EditText) findViewById(R.id.et_user_name);
+
         loadUserSeconds();
 
     }
@@ -74,11 +79,17 @@ public class MainActivity extends AppCompatActivity {
      * method oneclick
      */
     public void pushClick(View view){
-        Intent i = new Intent(mContext, GameActivity.class);
-        String tagSeconds = "sec";
-        i.putExtra(tagSeconds, (String) spTime.getSelectedItem());
-        startActivity(i);
-
+        userName = etName.getText().toString();
+        if (userName.matches("")) {
+            etName.setError("yourname");
+        }else if (!userName.matches("")){
+            Intent i = new Intent(mContext, GameActivity.class);
+            String tag = "name";
+            i.putExtra(tag, userName);
+            String tagSeconds = "sec";
+            i.putExtra(tagSeconds, (String) spTime.getSelectedItem());
+            startActivity(i);
+        }
     }
 
 }

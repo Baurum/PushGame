@@ -16,6 +16,15 @@
         android:textAlignment="center"
         android:textSize="40dp"
         />
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="your name"
+        />
+
+
+
     <TextView android:id="@+id/tv_chose_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
