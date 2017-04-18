@@ -6,4 +6,24 @@
         <item>10s </item>
     </string-array>
 
+
+    // Main acivity
+
+        <string name="error_name">Your name</string>
+        <string name="str_your_name">Your name</string>
+        <string name="str_your_time">Your time</string>
+        <string name="btn_push">Push</string>
+
+    //Game activity
+
+                /*method onFinish
+                     <string name="finish_time">END</string>
+
+        <string name="btn_push_me">PUSH ME</string>
+
+    //Leader Board
+    <string name="str_your_last_score">Your last Score: </string>
+
+
+
 </resources>

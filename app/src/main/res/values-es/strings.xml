@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ClickGame</string>
+    <string-array name="seconds">
+        <item>30s </item>
+        <item>20s </item>
+        <item>10s </item>
+    </string-array>
+
+    // Main acivity
+        <string name="error_name">Introduce tu nombre</string>
+        <string name="str_your_name">Tu nombre</string>
+        <string name="str_your_time">Elige tu tiempo</string>
+        <string name="btn_push">Pulsa</string>
+
+    //Game activity
+             /*method onFinish
+                <string name="finish_time">FIN</string>
+
+        <string name="btn_push_me">PULSA</string>
+
+
+    //Leader Board
+    <string name="str_your_last_score">Tu puntuación: </string>
+
+
+
+</resources>

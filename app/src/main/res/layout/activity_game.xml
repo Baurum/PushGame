@@ -27,9 +27,9 @@
     <Button android:id="@+id/btn_push"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:text="PUSH ME"
+        android:text="@string/btn_push_me"
         android:onClick="countPushButton"
-        android:background="#FF0000"
+        android:background="@color/btn_push_me"
         android:layout_margin="25dp"
 
         />

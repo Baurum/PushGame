@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    
+    
+    
+    //Main activity 
+         <color name="btn_background">#3F51B5</color>
+
+    //Activity game
+        <color name="btn_push_me">#FF0000</color>
+
+
+
 </resources>

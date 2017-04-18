@@ -34,15 +34,20 @@ public class LeaderBoard extends AppCompatActivity {
     String top4string;
     String top5string;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
+
         Intent i = getIntent();
+    
+
         lastScore = i.getStringExtra("score");
         tvLastScore = (TextView) findViewById(R.id.tv_user_last_score);
         userName = i.getStringExtra("name");
-        tvLastScore.setText(userName + " Your last score: "+lastScore);
+        tvLastScore.setText
+                (userName + " " + getString(R.string.str_your_last_score)+ " "+lastScore);
 
 //        shared preferences
 

@@ -28,16 +28,14 @@ public class MainActivity extends AppCompatActivity {
         initApp();
     }
 
-    /**
-     * Method init app
-     */
+    /***********************************************************************************************
+     * Method to init the app
+     **********************************************************************************************/
     private void initApp() {
         mContext = this;
         this.spTime = (Spinner) findViewById(R.id.sp_time);
         etName = (EditText) findViewById(R.id.et_user_name);
-
         loadUserSeconds();
-
     }
 
     /***********************************************************************************************
@@ -74,14 +72,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    /**
+    /***********************************************************************************************
      * method oneclick
-     */
+     **********************************************************************************************/
     public void pushClick(View view){
         userName = etName.getText().toString();
         if (userName.matches("")) {
-            etName.setError("yourname");
+            etName.setError(getString(R.string.error_name));
         }else if (!userName.matches("")){
             Intent i = new Intent(mContext, GameActivity.class);
             String tag = "name";

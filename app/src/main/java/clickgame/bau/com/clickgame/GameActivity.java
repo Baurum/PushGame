@@ -46,6 +46,13 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         mContext = this;
+        initApp();
+    }
+
+    /***********************************************************************************************
+     * Method to init the app
+     **********************************************************************************************/
+    public void initApp(){
         Intent i = getIntent();
         userTime = i.getStringExtra("sec");
         getUserSeconds(userTime);
@@ -80,9 +87,6 @@ public class GameActivity extends AppCompatActivity {
         top3 = Integer.parseInt(parts3[1]);
         top4 = Integer.parseInt(parts4[1]);
         top5 = Integer.parseInt(parts5[1]);
-
-
-
     }
 
     /***********************************************************************************************
@@ -136,7 +140,7 @@ public class GameActivity extends AppCompatActivity {
          *******************************************************************************************/
         @Override
         public void onFinish() {
-            show.setText("end");
+            show.setText(getString(R.string.finish_time));
             push.setEnabled(false);
             Intent i = new Intent(mContext, LeaderBoard.class);
             String tagScore = "score";
@@ -146,7 +150,6 @@ public class GameActivity extends AppCompatActivity {
             startActivity(i);
             refreshTop();
             //finishSplashScreenActivity()
-
         }
     }
     /***********************************************************************************************
@@ -165,9 +168,6 @@ public class GameActivity extends AppCompatActivity {
 
         clicks ++;
         tvUserCount.setText(""+clicks);
-
-
-
     }
 
 
@@ -190,10 +190,9 @@ public class GameActivity extends AppCompatActivity {
 //    }
 
 
-
-
-
-
+    /***********************************************************************************************
+     *Method to update the rankings and give the top five
+     **********************************************************************************************/
 
     public void refreshTop(){
 
