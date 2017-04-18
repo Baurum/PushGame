@@ -31,9 +31,5 @@
         android:onClick="countPushButton"
         android:background="@color/btn_push_me"
         android:layout_margin="25dp"
-
         />
-
-
-
 </LinearLayout>

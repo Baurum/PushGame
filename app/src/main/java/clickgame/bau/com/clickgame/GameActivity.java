@@ -1,9 +1,9 @@
 package clickgame.bau.com.clickgame;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +23,6 @@ public class GameActivity extends AppCompatActivity {
     private Button push;
     private String userName;
 
-
     //shared prefs
     public static final String MARCOS_SHARED_PREFERENCES = "MarcosSharedPreferences";
     //topscores
@@ -38,8 +37,6 @@ public class GameActivity extends AppCompatActivity {
     String top3string;
     String top4string;
     String top5string;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +67,11 @@ public class GameActivity extends AppCompatActivity {
         //share prefs
         SharedPreferences prefs = getSharedPreferences(MARCOS_SHARED_PREFERENCES, MODE_PRIVATE);
 
-        top1string = prefs.getString("top1", "Robot: 0");
-        top2string = prefs.getString("top2", "Robot: 0");
-        top3string = prefs.getString("top3", "Robot: 0");
-        top4string = prefs.getString("top4", "Robot: 0");
-        top5string = prefs.getString("top5", "Robot: 0");
+        top1string = prefs.getString(userTime + "_top1", "Robot: 0");
+        top2string = prefs.getString(userTime + "_top2", "Robot: 0");
+        top3string = prefs.getString(userTime + "_top3", "Robot: 0");
+        top4string = prefs.getString(userTime + "_top4", "Robot: 0");
+        top5string = prefs.getString(userTime + "_top5", "Robot: 0");
 
         String[] parts1 = top1string.split(": ");
         String[] parts2 = top2string.split(": ");
@@ -142,16 +139,10 @@ public class GameActivity extends AppCompatActivity {
         public void onFinish() {
             show.setText(getString(R.string.finish_time));
             push.setEnabled(false);
-            Intent i = new Intent(mContext, LeaderBoard.class);
-            String tagScore = "score";
-            i.putExtra(tagScore, tvUserCount.getText().toString());
-            String tagName = "name";
-            i.putExtra(tagName, userName);
-            startActivity(i);
-            refreshTop();
-            //finishSplashScreenActivity()
+            finishGame();
         }
     }
+
     /***********************************************************************************************
      * Method to get the seconds user
      **********************************************************************************************/
@@ -159,7 +150,6 @@ public class GameActivity extends AppCompatActivity {
         String seconds = userSeconds.substring(0,2);
         userSecondsNumber = Integer.parseInt(seconds);
     }
-
 
     /***********************************************************************************************
      * Method to count the push button
@@ -170,46 +160,51 @@ public class GameActivity extends AppCompatActivity {
         tvUserCount.setText(""+clicks);
     }
 
+    private void finishGame() {
+        // Move on to the next activity in SPLASH_TIME_OUT seconds
+        new Handler().postDelayed(new Runnable() {
+            /**
+             *  This code runs after the timer has finished.
+             *  It reads the auth token from shared preferences and performs the autologin request
+             *  on the server. If both auth tokens match, we go to mainactivity. Otherwise we go to
+             *  Login Activity.
+             */
+            @Override
+            public void run() {
+                Intent i = new Intent(mContext, LeaderBoard.class);
+                String tagScore = "score";
+                i.putExtra(tagScore, tvUserCount.getText().toString());
+                String tagName = "name";
+                i.putExtra(tagName, userName);
+                i.putExtra("time", userTime);
+                startActivity(i);
+                refreshTop();
+                finish();
 
-
-
-//    private void finishSplashScreenActivity() {
-//        // Move on to the next activity in SPLASH_TIME_OUT seconds
-//        new Handler().postDelayed(new Runnable() {
-//            /**
-//             *  This code runs after the timer has finished.
-//             *  It reads the auth token from shared preferences and performs the autologin request
-//             *  on the server. If both auth tokens match, we go to mainactivity. Otherwise we go to
-//             *  Login Activity.
-//             */
-//            @Override
-//            public void run() {
-//                ServerCommunication.startAutoLogin(mContext, authToken);
-//            }
-//        }, SPLASH_TIME_OUT);
-//    }
-
+            }
+        }, 2000);
+    }
 
     /***********************************************************************************************
      *Method to update the rankings and give the top five
      **********************************************************************************************/
-
     public void refreshTop(){
 
         SharedPreferences.Editor editor =
                 getSharedPreferences(MARCOS_SHARED_PREFERENCES, MODE_PRIVATE).edit();
 
-        if(clicks > top1){
+        if(clicks > top1 ){
             top5 = top4;
             top4 = top3;
             top3 = top2;
             top2 = top1;
+
             top1 = clicks;
-            editor.putString("top1",userName + ": " + String.valueOf(top1));
-            editor.putString("top2",top1string);
-            editor.putString("top3",top2string);
-            editor.putString("top4",top3string);
-            editor.putString("top5",top4string);
+            editor.putString(userTime + "_top1",userName + ": " + String.valueOf(top1));
+            editor.putString(userTime + "_top2",top1string);
+            editor.putString(userTime + "_top3",top2string);
+            editor.putString(userTime + "_top4",top3string);
+            editor.putString(userTime + "_top5",top4string);
             top5string = top4string;
             top4string = top5string;
             top3string = top2string;
@@ -221,10 +216,10 @@ public class GameActivity extends AppCompatActivity {
             top4 = top3;
             top3 = top2;
             top2 = clicks;
-            editor.putString("top2",userName + ": " + String.valueOf(top2));
-            editor.putString("top3",top2string);
-            editor.putString("top4",top3string);
-            editor.putString("top5",top4string);
+            editor.putString(userTime + "_top2",userName + ": " + String.valueOf(top2));
+            editor.putString(userTime + "_top3",top2string);
+            editor.putString(userTime + "_top4",top3string);
+            editor.putString(userTime + "_top5",top4string);
             top5string = top4string;
             top4string = top5string;
             top3string = top2string;
@@ -234,9 +229,9 @@ public class GameActivity extends AppCompatActivity {
             top5 = top4;
             top4 = top3;
             top3 = clicks;
-            editor.putString("top3",userName + ": " + String.valueOf(top3));
-            editor.putString("top4",top3string);
-            editor.putString("top5",top4string);
+            editor.putString(userTime + "_top3",userName + ": " + String.valueOf(top3));
+            editor.putString(userTime + "_top4",top3string);
+            editor.putString(userTime + "_top5",top4string);
             top5string = top4string;
             top4string = top5string;
             top3string = userName + ": " + String.valueOf(top3);
@@ -244,28 +239,18 @@ public class GameActivity extends AppCompatActivity {
         }else if (clicks > top4){
             top5 = top4;
             top4 = clicks;
-            editor.putString("top4",userName + ": " + String.valueOf(top4));
-            editor.putString("top5",top4string);
+            editor.putString(userTime + "_top4",userName + ": " + String.valueOf(top4));
+            editor.putString(userTime + "_top5",top4string);
             top5string = top4string;
             top4string = userName + ": " + String.valueOf(top4);
 
         }else if (clicks > top5) {
             top5 = clicks;
-            editor.putString("top5",userName + ": " + String.valueOf(top5));
+            editor.putString(userTime + "_top5",userName + ": " + String.valueOf(top5));
             top5string = userName + ": " + String.valueOf(top5);
         }
         editor.apply();
     }
-
-
-
-
-
-
-
-
-
-
 }
 
 

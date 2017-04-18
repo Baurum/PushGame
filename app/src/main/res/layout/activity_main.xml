@@ -50,7 +50,4 @@
         android:text="@string/btn_push"
         android:layout_margin="40dp"
         android:background="@color/btn_background"/>
-
-
-
 </LinearLayout>

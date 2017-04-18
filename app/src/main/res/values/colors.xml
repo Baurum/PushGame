@@ -6,11 +6,14 @@
     
     
     
-    //Main activity 
+    <!--//Main activity -->
          <color name="btn_background">#3F51B5</color>
 
-    //Activity game
+    <!--//Activity game-->
         <color name="btn_push_me">#FF0000</color>
+
+    <!--//color boton reset-->
+        <color name="btn_reset_top">#00FF00</color>
 
 
 

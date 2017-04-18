@@ -7,22 +7,25 @@
     </string-array>
 
 
-    // Main acivity
+    <!--// Main acivity-->
 
         <string name="error_name">Your name</string>
         <string name="str_your_name">Your name</string>
         <string name="str_your_time">Your time</string>
         <string name="btn_push">Push</string>
 
-    //Game activity
+    <!--//Game activity-->
 
-                /*method onFinish
+                <!--/*method onFinish-->
                      <string name="finish_time">END</string>
 
         <string name="btn_push_me">PUSH ME</string>
 
-    //Leader Board
+    <!--//Leader Board-->
+
     <string name="str_your_last_score">Your last Score: </string>
+    <string name="btn_reset_top">Reset TOP</string>
+    <string name="str_robot_message">Robot: 0</string>
 
 
 
