@@ -163,12 +163,7 @@ public class GameActivity extends AppCompatActivity {
     private void finishGame() {
         // Move on to the next activity in SPLASH_TIME_OUT seconds
         new Handler().postDelayed(new Runnable() {
-            /**
-             *  This code runs after the timer has finished.
-             *  It reads the auth token from shared preferences and performs the autologin request
-             *  on the server. If both auth tokens match, we go to mainactivity. Otherwise we go to
-             *  Login Activity.
-             */
+            
             @Override
             public void run() {
                 Intent i = new Intent(mContext, LeaderBoard.class);
